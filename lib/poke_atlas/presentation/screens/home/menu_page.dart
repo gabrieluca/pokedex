@@ -15,7 +15,7 @@ class MenuPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            color: ColorConstants.backgroundMenuColor,
+            color: ColorConstants.menuBackground,
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -27,7 +27,7 @@ class MenuPage extends StatelessWidget {
                         Navigator.pop(context);
                       },
                     ),
-                    _MenuBody(),
+                    const _MenuBody(),
                   ],
                 ),
               ),
@@ -50,10 +50,10 @@ class _MenuBody extends StatelessWidget {
       children: [
         const SizedBox(height: 44),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: MenuTile(
-            iconPath: 'assets/icons/home.svg',
-            title: TextConstants.homeMenuTitle,
+            iconPath: IconPathConstants.home,
+            title: TextConstants.menuHomeTitle,
             onTap: () {
               Navigator.pushReplacement(
                 context,
@@ -69,14 +69,14 @@ class _MenuBody extends StatelessWidget {
           child: Container(
             height: 1,
             width: 160,
-            color: ColorConstants.dividerMenuColor,
+            color: ColorConstants.menuDivider,
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: MenuTile(
-            iconPath: 'assets/icons/list.svg',
-            title: TextConstants.listMenuTitle,
+            iconPath: IconPathConstants.list,
+            title: TextConstants.menuListTitle,
             onTap: () {
               Navigator.pushReplacement(
                 context,

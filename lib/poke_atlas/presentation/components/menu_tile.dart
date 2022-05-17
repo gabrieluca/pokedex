@@ -20,7 +20,6 @@ class MenuTile extends StatelessWidget {
         children: [
           SvgPicture.asset(
             iconPath,
-            semanticsLabel: 'Página Inicial',
           ),
           const SizedBox(
             width: 29,

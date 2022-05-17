@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.16.2 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,6 +34,7 @@ dependencies:
   dio: ^4.0.6
   get_it: ^7.2.0
   flutter_svg: ^1.0.3
+  get: ^4.6.3
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/images/types/
 
   fonts:
     - family: FiraCode
@@ -62,4 +64,6 @@ flutter:
           weight: 700
         - asset: assets/fonts/FiraCode-SemiBold.ttf
           weight: 600
+        - asset: assets/fonts/FiraCode-Medium.ttf
         - asset: assets/fonts/FiraCode-Regular.ttf
+          weight: 400
