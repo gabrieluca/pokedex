@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'poke_atlas/core/dependency_injection.dart';
+import 'poke_atlas/presentation/screens/home/home_page.dart';
 import 'poke_atlas/presentation/utils/constants.dart';
-import 'poke_atlas/presentation/screens/splash_page.dart';
 
 void main() {
   Injection.registerDependencies();
@@ -18,7 +18,7 @@ class PokeAtlasApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: TextConstants.appTitle,
       theme: _appTheme,
-      home: const SplashPage(),
+      home: const HomePage(),
     );
   }
 }
@@ -73,6 +73,12 @@ final _appTheme = ThemeData(
     bodyMedium: TextStyle(
       fontFamily: _appFontFamily,
       fontSize: 14,
+      color: _textColor,
+    ),
+    bodySmall: TextStyle(
+      fontFamily: _appFontFamily,
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
       color: _textColor,
     ),
   ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ColorConstants {
-  static const backgroundHomeColor = Color.fromRGBO(44, 44, 45, 0.9);
-  static const searchButtonColor = Color.fromRGBO(54, 54, 54, 1);
-  static const searchButtonShadowColor = Color.fromRGBO(255, 255, 255, 0.1);
-  static const dividerMenuColor = Color.fromRGBO(255, 255, 255, 0.5);
-  static const backgroundMenuColor = Color.fromRGBO(44, 44, 45, 1);
+  static const homeBackground = Color.fromRGBO(44, 44, 45, 0.9);
+  static const homeSearchButton = Color.fromRGBO(54, 54, 54, 1);
+  static const homeSearchButtonShadow = Color.fromRGBO(255, 255, 255, 0.1);
+  static const menuDivider = Color.fromRGBO(255, 255, 255, 0.5);
+  static const menuBackground = Color.fromRGBO(44, 44, 45, 1);
+  static const pokemonCardShadow = Color.fromRGBO(0, 0, 0, 0.25);
+  static const listBarText = Color.fromRGBO(204, 204, 204, 1);
 }
 
 class TextConstants {
@@ -13,7 +15,26 @@ class TextConstants {
   static const homeTitle = 'Pokedex';
   static const homeDescription =
       'Use the Advanced Search\n to explore Pokémon by\n type, weakness,\n Ability, and more!\n Search for a Pokémon by\n name or using its\n National Pokédex\n number.';
-  static const searchButtonName = 'Search Pokemon';
-  static const homeMenuTitle = 'Home';
-  static const listMenuTitle = 'Lista';
+  static const homeSearchButtonName = 'Search Pokemon';
+  static const headerMenuButton = 'Menu';
+  static const headerCloseButton = 'Close';
+  static const menuHomeTitle = 'Home';
+  static const menuListTitle = 'List';
+  static const listSearch = 'Search';
+  static const listShowAll = 'Show All';
+  static const listShowLess = 'Show Less';
+}
+
+class IconPathConstants {
+  static const home = 'assets/icons/home.svg';
+  static const menu = 'assets/icons/menu.svg';
+  static const close = 'assets/icons/close.svg';
+  static const list = 'assets/icons/list.svg';
+  static const search = 'assets/icons/search.svg';
+  static const downArrow = 'assets/icons/down_arrow.svg';
+}
+
+class ImagePathConstants {
+  static const homeBackground = 'assets/images/home_background.png';
+  static const listBackground = 'assets/images/list_background.png';
 }

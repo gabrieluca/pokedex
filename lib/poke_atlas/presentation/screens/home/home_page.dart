@@ -1,11 +1,13 @@
 import 'dart:ui' as ui;
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../components/custom_header.dart';
+import '../../components/pokeatlas_header.dart';
 import '../../utils/constants.dart';
 import '../../utils/ui_helper.dart';
+import '../list/list_page.dart';
+import 'menu_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,7 +23,16 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  const _HomeHeader(),
+                  PokeAtlasHeader(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const MenuPage(),
+                        ),
+                      );
+                    },
+                  ),
                   Column(
                     children: const [
                       SizedBox(height: 52),
@@ -52,7 +63,7 @@ class _Background extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/home_background.png'),
+          image: AssetImage(ImagePathConstants.homeBackground),
           fit: BoxFit.cover,
         ),
       ),
@@ -62,32 +73,7 @@ class _Background extends StatelessWidget {
           sigmaY: UIHelper.convertRadiusToSigma(10),
         ),
         child: Container(
-          color: ColorConstants.backgroundHomeColor,
-        ),
-      ),
-    );
-  }
-}
-
-class _HomeHeader extends StatelessWidget {
-  const _HomeHeader({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomHeader(
-      child: GestureDetector(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            SizedBox(
-              child: SvgPicture.asset(
-                'assets/icons/menu.svg',
-                semanticsLabel: 'Menu',
-              ),
-            ),
-          ],
+          color: ColorConstants.homeBackground,
         ),
       ),
     );
@@ -149,33 +135,43 @@ class _SearchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: ColorConstants.searchButtonColor,
-        borderRadius: BorderRadius.circular(6),
-        boxShadow: const [
-          BoxShadow(
-            color: ColorConstants.searchButtonShadowColor,
-            offset: Offset(1, 0),
-            blurRadius: 8,
-            spreadRadius: 2,
-          )
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 50,
-            child: Center(
-              child: Text(
-                TextConstants.searchButtonName,
-                style: Theme.of(context).textTheme.titleSmall,
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+          color: ColorConstants.homeSearchButton,
+          borderRadius: BorderRadius.circular(6),
+          boxShadow: const [
+            BoxShadow(
+              color: ColorConstants.homeSearchButtonShadow,
+              offset: Offset(1, 0),
+              blurRadius: 8,
+              spreadRadius: 2,
+            )
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 50,
+              child: Center(
+                child: Text(
+                  TextConstants.homeSearchButtonName,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ListPage(),
+          ),
+        );
+      },
     );
   }
 }

@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/entitites/pokemon_detail.dart';
+
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage(this.pokemon, this.description, {Key? key})
+      : super(key: key);
+
+  final PokemonDetailEntity pokemon;
+  final Description? description;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Text(
+          description ?? '',
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
   }
 }

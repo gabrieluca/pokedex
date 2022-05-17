@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../components/custom_header.dart';
+import '../../components/pokeatlas_header.dart';
 import '../../components/menu_tile.dart';
 import '../../utils/constants.dart';
+import '../list/list_page.dart';
+import 'home_page.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({Key? key}) : super(key: key);
@@ -14,45 +15,25 @@ class MenuPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            color: ColorConstants.backgroundMenuColor,
+            color: ColorConstants.menuBackground,
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
-                  children: const [
-                    _MenuHeader(),
-                    _MenuBody(),
+                  children: [
+                    PokeAtlasHeader(
+                      isMenuIcon: false,
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    const _MenuBody(),
                   ],
                 ),
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _MenuHeader extends StatelessWidget {
-  const _MenuHeader({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomHeader(
-      child: GestureDetector(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            SizedBox(
-              child: SvgPicture.asset(
-                'assets/icons/close.svg',
-                semanticsLabel: 'Fechar',
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -68,11 +49,19 @@ class _MenuBody extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 44),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: MenuTile(
-            iconPath: 'assets/icons/home.svg',
-            title: TextConstants.homeMenuTitle,
+            iconPath: IconPathConstants.home,
+            title: TextConstants.menuHomeTitle,
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomePage(),
+                ),
+              );
+            },
           ),
         ),
         Padding(
@@ -80,14 +69,22 @@ class _MenuBody extends StatelessWidget {
           child: Container(
             height: 1,
             width: 160,
-            color: ColorConstants.dividerMenuColor,
+            color: ColorConstants.menuDivider,
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: MenuTile(
-            iconPath: 'assets/icons/list.svg',
-            title: TextConstants.listMenuTitle,
+            iconPath: IconPathConstants.list,
+            title: TextConstants.menuListTitle,
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ListPage(),
+                ),
+              );
+            },
           ),
         ),
       ],
