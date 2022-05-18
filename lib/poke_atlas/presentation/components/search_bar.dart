@@ -1,15 +1,34 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../controller/list_controller.dart';
 import '../utils/constants.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends StatefulWidget {
   const SearchBar(
     this.controller, {
     Key? key,
   }) : super(key: key);
   final ListController controller;
+
+  @override
+  State<SearchBar> createState() => _SearchBarState();
+}
+
+class _SearchBarState extends State<SearchBar> {
+  Timer? _debounce;
+
+  void _onSearchChanged(String search) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(
+      const Duration(milliseconds: 500),
+      () {
+        widget.controller.searchPokemon(search.toLowerCase());
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +44,9 @@ class SearchBar extends StatelessWidget {
       ),
       height: 30,
       child: TextField(
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: Colors.grey,
+            ),
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
@@ -54,6 +76,7 @@ class SearchBar extends StatelessWidget {
             ),
           ),
         ),
+        onChanged: _onSearchChanged,
       ),
     );
   }

@@ -137,16 +137,17 @@ class _ShowAllButton extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(width: 4.26),
-                Text(
-                  isCollapsed
-                      ? TextConstants.listShowAll
-                      : TextConstants.listShowLess,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w200,
-                        color: ColorConstants.listBarText,
-                      ),
+                Expanded(
+                  child: Text(
+                    isCollapsed
+                        ? TextConstants.listShowAll
+                        : TextConstants.listShowLess,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w200,
+                          color: ColorConstants.listBarText,
+                        ),
+                  ),
                 ),
-                const Spacer(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: SvgPicture.asset(
