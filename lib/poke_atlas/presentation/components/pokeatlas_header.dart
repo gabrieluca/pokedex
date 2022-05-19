@@ -8,67 +8,67 @@ import '../utils/constants.dart';
 class PokeAtlasHeader extends StatelessWidget {
   const PokeAtlasHeader({
     Key? key,
-    this.onTap,
     this.isMenuIcon = true,
   }) : super(key: key);
 
   final bool isMenuIcon;
-  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 60,
-          child: Center(
+    return SizedBox(
+      height: 60,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
             child: Text(
               TextConstants.appTitle,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
-        ),
-        const Spacer(),
-        isMenuIcon
-            ? GestureDetector(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      child: SvgPicture.asset(
-                        IconPathConstants.menu,
-                        semanticsLabel: TextConstants.headerMenuButton,
+          const Spacer(),
+          isMenuIcon
+              ? GestureDetector(
+                  key: const Key(KeyConstants.headerMenuButton),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const MenuPage(),
                       ),
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => const MenuPage(),
-                    ),
-                  );
-                },
-              )
-            : GestureDetector(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      child: SvgPicture.asset(
-                        IconPathConstants.close,
-                        semanticsLabel: TextConstants.headerCloseButton,
+                    );
+                  },
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: SvgPicture.asset(
+                          IconPathConstants.menu,
+                          semanticsLabel: TextConstants.headerMenuButton,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                )
+              : GestureDetector(
+                  key: const Key(KeyConstants.headerCloseButton),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          child: SvgPicture.asset(
+                            IconPathConstants.close,
+                            semanticsLabel: TextConstants.headerCloseButton,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-      ],
+        ],
+      ),
     );
   }
 }

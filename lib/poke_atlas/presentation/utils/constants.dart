@@ -38,3 +38,11 @@ class ImagePathConstants {
   static const homeBackground = 'assets/images/home_background.png';
   static const listBackground = 'assets/images/list_background.png';
 }
+
+class KeyConstants {
+  static const searchButton = 'searchButton';
+  static const headerMenuButton = 'headerMenuButton';
+  static const headerCloseButton = 'headerCloseButton';
+  static const menuHomeButton = 'menuHomeButton';
+  static const menuListButton = 'menuListButton';
+}

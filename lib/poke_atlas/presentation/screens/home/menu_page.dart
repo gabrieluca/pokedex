@@ -20,14 +20,11 @@ class MenuPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
-                  children: [
+                  children: const [
                     PokeAtlasHeader(
                       isMenuIcon: false,
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
                     ),
-                    const _MenuBody(),
+                    MenuBody(),
                   ],
                 ),
               ),
@@ -39,8 +36,8 @@ class MenuPage extends StatelessWidget {
   }
 }
 
-class _MenuBody extends StatelessWidget {
-  const _MenuBody({
+class MenuBody extends StatelessWidget {
+  const MenuBody({
     Key? key,
   }) : super(key: key);
 
@@ -52,6 +49,7 @@ class _MenuBody extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: MenuTile(
+            key: const Key(KeyConstants.menuHomeButton),
             iconPath: IconPathConstants.home,
             title: TextConstants.menuHomeTitle,
             onTap: () {
@@ -75,6 +73,7 @@ class _MenuBody extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: MenuTile(
+            key: const Key(KeyConstants.menuListButton),
             iconPath: IconPathConstants.list,
             title: TextConstants.menuListTitle,
             onTap: () {
