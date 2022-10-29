@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../domain/repositories/pokedex_repository.dart';
+import '../../components/custom_loading.dart';
 import '../../components/filter_bar.dart';
 import '../../components/pokeatlas_header.dart';
 import '../../components/pokemon_card.dart';
@@ -21,6 +22,7 @@ class ListPage extends StatelessWidget {
         GetIt.I.get<PokedexRepository>(),
       ),
     );
+
     return Scaffold(
       body: Stack(
         children: [
@@ -36,6 +38,7 @@ class ListPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
+                controller: _controller.scrollController,
                 child: Column(
                   children: [
                     const PokeAtlasHeader(),
@@ -45,26 +48,26 @@ class ListPage extends StatelessWidget {
                     FilterBar(_controller),
                     const SizedBox(height: 29.22),
                     _controller.obx(
-                      (pokemonDetailList) => ListView.separated(
+                      (state) => ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: pokemonDetailList!.length,
+                        itemCount: _controller.pageList.length,
                         separatorBuilder: (BuildContext context, int index) {
                           return const SizedBox(height: 15);
                         },
                         itemBuilder: (BuildContext context, int index) {
                           return PokemonCard(
-                            pokemonDetailList[index],
+                            _controller.pageList[index],
                             onTap: () async {
                               final description =
                                   await _controller.getPokemonDescription(
-                                pokemonDetailList[index].id,
+                                _controller.pageList[index].id,
                               );
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ProfilePage(
-                                    pokemonDetailList[index],
+                                    _controller.pageList[index],
                                     description,
                                   ),
                                 ),
@@ -78,20 +81,44 @@ class ListPage extends StatelessWidget {
                       onLoading: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
-                          Center(
-                            child: CircularProgressIndicator.adaptive(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.white,
-                              ),
-                            ),
-                          ),
+                          CustomLoading(),
                         ],
                       ),
                       onError: (error) => const Center(
-                        child: Text('Error'),
+                        child: Text('Tente novamente'),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    Obx(
+                      () {
+                        if (_controller.listEndStatus.value.isLoading) {
+                          return Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  const CustomLoading(),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        } else if (_controller.listEndStatus.value.isSuccess &&
+                            _controller.pageList.length == 150) {
+                          return const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                'Todos os pokémons da primeira geração foram carregados!',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          );
+                        }
+                        return const SizedBox(height: 20);
+                      },
+                    ),
                   ],
                 ),
               ),

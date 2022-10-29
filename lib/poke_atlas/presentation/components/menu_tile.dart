@@ -16,6 +16,7 @@ class MenuTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Row(
         children: [
           SvgPicture.asset(
@@ -30,7 +31,6 @@ class MenuTile extends StatelessWidget {
           ),
         ],
       ),
-      onTap: onTap,
     );
   }
 }

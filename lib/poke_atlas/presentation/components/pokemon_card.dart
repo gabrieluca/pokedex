@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entitites/pokemon_detail.dart';
@@ -44,7 +45,10 @@ class PokemonCard extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: 100,
-                      child: Image.network(pokemon.imageUrl!),
+                      child: CachedNetworkImage(
+                        imageUrl: pokemon.imageUrl!,
+                        fadeInDuration: const Duration(milliseconds: 100),
+                      ),
                     ),
                   ],
                 ),
@@ -82,7 +86,7 @@ class _IdTile extends StatelessWidget {
                   children: [
                     const SizedBox(width: 9),
                     Text(
-                      '#' + pokemon.id.toString().padLeft(3, '0'),
+                      '#${pokemon.id.toString().padLeft(3, '0')}',
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
