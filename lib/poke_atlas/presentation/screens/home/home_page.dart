@@ -1,13 +1,11 @@
 import 'dart:ui' as ui;
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/pokeatlas_header.dart';
 import '../../utils/constants.dart';
 import '../../utils/ui_helper.dart';
 import '../list/list_page.dart';
-import 'menu_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,16 +21,7 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  PokeAtlasHeader(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const MenuPage(),
-                        ),
-                      );
-                    },
-                  ),
+                  const PokeAtlasHeader(),
                   Column(
                     children: const [
                       SizedBox(height: 52),
@@ -136,6 +125,7 @@ class _SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: const Key(KeyConstants.searchButton),
       child: Container(
         decoration: BoxDecoration(
           color: ColorConstants.homeSearchButton,

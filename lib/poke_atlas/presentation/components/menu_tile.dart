@@ -25,9 +25,11 @@ class MenuTile extends StatelessWidget {
           const SizedBox(
             width: 29,
           ),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.headlineMedium,
+          Expanded(
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ),
         ],
       ),
