@@ -13,9 +13,9 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _color = LayoutMapper.getColorFromPokemonTypeMap[
-            pokemon.primaryType ?? pokemon.secondaryType] ??
-        Colors.grey;
+    final _color =
+        LayoutMapper.getColorFromPokemonTypeMap[pokemon.primaryType ?? pokemon.secondaryType] ??
+            Colors.grey;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -29,14 +29,14 @@ class PokemonCard extends StatelessWidget {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           child: Stack(
             children: [
               Column(
                 children: [
                   _IdTile(color: _color, pokemon: pokemon),
                   InfoTile(pokemon: pokemon, color: _color),
-                  _BottomPadding(color: _color)
+                  _BottomPadding(color: _color),
                 ],
               ),
               if (pokemon.imageUrl != null)
@@ -133,31 +133,24 @@ class InfoTile extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (LayoutMapper.getImageAssetFromPokemonTypeMap[
-                            pokemon.primaryType] !=
-                        null)
+                    if (LayoutMapper.getImageAssetFromPokemonTypeMap[pokemon.primaryType] != null)
                       SizedBox(
                         width: 18,
                         height: 17.22,
                         child: Image.asset(
-                          LayoutMapper.getImageAssetFromPokemonTypeMap[
-                              pokemon.primaryType]!,
+                          LayoutMapper.getImageAssetFromPokemonTypeMap[pokemon.primaryType]!,
                         ),
                       ),
-                    if (pokemon.primaryType != null &&
-                        pokemon.secondaryType != null)
+                    if (pokemon.primaryType != null && pokemon.secondaryType != null)
                       const SizedBox(
                         height: 9.78,
                       ),
-                    if (LayoutMapper.getImageAssetFromPokemonTypeMap[
-                            pokemon.secondaryType] !=
-                        null)
+                    if (LayoutMapper.getImageAssetFromPokemonTypeMap[pokemon.secondaryType] != null)
                       SizedBox(
                         width: 18,
                         height: 17.22,
                         child: Image.asset(
-                          LayoutMapper.getImageAssetFromPokemonTypeMap[
-                              pokemon.secondaryType]!,
+                          LayoutMapper.getImageAssetFromPokemonTypeMap[pokemon.secondaryType]!,
                         ),
                       ),
                   ],

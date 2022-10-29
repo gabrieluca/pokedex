@@ -13,6 +13,7 @@ linter:
     prefer_const_constructors: true
     prefer_const_literals_to_create_immutables: false
     always_declare_return_types: true
+    require_trailing_commas: true
 
 analyzer:
   exclude:

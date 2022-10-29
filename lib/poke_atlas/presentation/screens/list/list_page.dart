@@ -117,7 +117,7 @@ class ListPage extends StatelessWidget {
                             ),
                           );
                         }
-                        return const SizedBox(height: 20);
+                        return const SizedBox(height: 20, width: 20, child: SizedBox());
                       },
                     ),
                   ],

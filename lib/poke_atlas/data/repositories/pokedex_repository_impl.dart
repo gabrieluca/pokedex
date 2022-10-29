@@ -32,7 +32,8 @@ class PokedexRepositoryImpl extends PokedexRepository {
 
   @override
   Future<Either<Failure, PokemonDetailEntity>> getPokemonDetail(
-      String url) async {
+    String url,
+  ) async {
     final failureOrResponse = await _datasource.get(url);
     return failureOrResponse.fold(
       (error) => Left(error),
@@ -44,8 +45,7 @@ class PokedexRepositoryImpl extends PokedexRepository {
   Future<Either<Failure, Description>> getPokemonDescription(
     int pokemonId,
   ) async {
-    final failureOrResponse =
-        await _datasource.get('pokemon-species/$pokemonId');
+    final failureOrResponse = await _datasource.get('pokemon-species/$pokemonId');
     return failureOrResponse.fold(
       (error) => Left(error),
       (response) => Right(

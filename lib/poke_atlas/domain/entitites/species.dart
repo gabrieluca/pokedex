@@ -7,7 +7,8 @@ class SpeciesEntity {
 
   factory SpeciesEntity.fromMap(Map<String, dynamic> map) => SpeciesEntity(
         flavorTextEntries: List<FlavorTextEntry>.from(
-            map['flavor_text_entries'].map((x) => FlavorTextEntry.fromMap(x))),
+          map['flavor_text_entries'].map((x) => FlavorTextEntry.fromMap(x)),
+        ),
       );
 }
 
