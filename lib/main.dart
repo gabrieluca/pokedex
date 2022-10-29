@@ -10,7 +10,9 @@ void main() {
 }
 
 class PokeAtlasApp extends StatelessWidget {
-  const PokeAtlasApp({Key? key}) : super(key: key);
+  const PokeAtlasApp({this.child, Key? key}) : super(key: key);
+
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class PokeAtlasApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: TextConstants.appTitle,
       theme: _appTheme,
-      home: const HomePage(),
+      home: child ?? const HomePage(),
     );
   }
 }

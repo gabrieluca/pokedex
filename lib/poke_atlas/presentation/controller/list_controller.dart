@@ -5,8 +5,7 @@ import '../../domain/entitites/pokemon_detail.dart';
 import '../../domain/entitites/pokemon_list.dart';
 import '../../domain/repositories/pokedex_repository.dart';
 
-class ListController extends GetxController
-    with StateMixin<List<PokemonDetailEntity>> {
+class ListController extends GetxController with StateMixin<List<PokemonDetailEntity>> {
   final PokedexRepository _pokedexRepository;
 
   ListController(this._pokedexRepository);
@@ -47,8 +46,7 @@ class ListController extends GetxController
     scrollController.addListener(
       () async {
         if (pokemonDetailList.isNotEmpty) {
-          if (scrollController.position.pixels >=
-                  scrollController.position.maxScrollExtent &&
+          if (scrollController.position.pixels >= scrollController.position.maxScrollExtent &&
               !listEndStatus.value.isLoading) {
             if (pokemonDetailList.length < 150) {
               _getNextPage();
@@ -97,12 +95,9 @@ class ListController extends GetxController
   Future<void> getPokemonDetails() async {
     const count = 20;
     var newList = <PokemonDetailEntity>[];
-    for (var pokemonItem in listEntity.value!.pokemonList
-        .skip(currentOffset.value)
-        .take(count)) {
+    for (var pokemonItem in listEntity.value!.pokemonList.skip(currentOffset.value).take(count)) {
       if (pokemonItem.url != null) {
-        final failureOrResponse =
-            await _pokedexRepository.getPokemonDetail(pokemonItem.url!);
+        final failureOrResponse = await _pokedexRepository.getPokemonDetail(pokemonItem.url!);
         failureOrResponse.fold(
           (error) => null,
           (detailResponse) {
@@ -125,11 +120,9 @@ class ListController extends GetxController
     if (pokemonDetailList.length < 150) {
       change(pageList, status: RxStatus.loading());
       var newList = <PokemonDetailEntity>[];
-      for (var pokemonItem
-          in listEntity.value!.pokemonList.skip(currentOffset.value)) {
+      for (var pokemonItem in listEntity.value!.pokemonList.skip(currentOffset.value)) {
         if (pokemonItem.url != null) {
-          final failureOrResponse =
-              await _pokedexRepository.getPokemonDetail(pokemonItem.url!);
+          final failureOrResponse = await _pokedexRepository.getPokemonDetail(pokemonItem.url!);
           failureOrResponse.fold(
             (error) => null,
             (detailResponse) {
@@ -153,8 +146,8 @@ class ListController extends GetxController
             (e) =>
                 e.name.contains(searchedText) ||
                 e.id.toString().contains(searchedText) ||
-                (e.primaryType?.value().contains(searchedText) ?? false) ||
-                (e.secondaryType?.value().contains(searchedText) ?? false),
+                (e.primaryType?.getName().contains(searchedText) ?? false) ||
+                (e.secondaryType?.getName().contains(searchedText) ?? false),
           )
           .toList(),
     );
@@ -170,8 +163,7 @@ class ListController extends GetxController
       pageList.assignAll(
         pokemonDetailList.where(
           (e) {
-            return selectedTypes.contains(e.primaryType) ||
-                selectedTypes.contains(e.secondaryType);
+            return selectedTypes.contains(e.primaryType) || selectedTypes.contains(e.secondaryType);
           },
         ).toList(),
       );
@@ -180,8 +172,7 @@ class ListController extends GetxController
   }
 
   Future<String?> getPokemonDescription(int pokemonId) async {
-    final failureOrResponse =
-        await _pokedexRepository.getPokemonDescription(pokemonId);
+    final failureOrResponse = await _pokedexRepository.getPokemonDescription(pokemonId);
     return failureOrResponse.fold(
       (error) => null,
       (descriptionResponse) => descriptionResponse,

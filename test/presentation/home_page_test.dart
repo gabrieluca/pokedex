@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  WidgetController.hitTestWarningShouldBeFatal = true;
   testWidgets('Home Page', (tester) async {
     await tester.pumpWidget(const PokeAtlasApp());
     await openHomePage(tester);
@@ -17,7 +18,6 @@ Future<void> openHomePage(WidgetTester tester) async {
   expect(find.text(TextConstants.appTitle), findsOneWidget);
   expect(find.text(TextConstants.homeTitle), findsOneWidget);
   expect(find.text(TextConstants.homeDescription), findsOneWidget);
-  expect(find.byKey(const Key(KeyConstants.searchButton)), findsOneWidget);
 
   await tester.tap(
     find.byKey(

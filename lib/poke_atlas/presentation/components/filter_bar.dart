@@ -196,7 +196,7 @@ class _PokemonTypeChip extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                type.value(),
+                type.name,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: isSelected ? Colors.white : _typeColor,
                     ),

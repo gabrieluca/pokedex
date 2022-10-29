@@ -76,7 +76,7 @@ enum PokemonType {
   dark,
   fairy;
 
-  String value() => toString().split('.')[1];
+  String getName() => name;
 }
 
 const pokemonTypeFromMap = {
