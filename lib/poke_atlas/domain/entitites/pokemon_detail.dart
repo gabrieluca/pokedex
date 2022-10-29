@@ -4,6 +4,7 @@ class PokemonDetailEntity {
   final int id;
   final String name;
   final String? imageUrl;
+  final String? largeImageUrl;
   final PokemonType? primaryType;
   final PokemonType? secondaryType;
   final PokemonStatsEntity stats;
@@ -12,6 +13,7 @@ class PokemonDetailEntity {
     required this.id,
     required this.name,
     this.imageUrl,
+    this.largeImageUrl,
     required this.primaryType,
     required this.secondaryType,
     required this.stats,
@@ -50,7 +52,7 @@ class PokemonDetailEntity {
 
   @override
   String toString() {
-    return 'PokemonEntity(id: $id, name: $name, imageUrl: $imageUrl, primaryType: $primaryType, secondaryType: $secondaryType, stats: $stats)';
+    return 'PokemonDetailEntity(id: $id, name: $name, imageUrl: $imageUrl, largeImageUrl: $largeImageUrl, primaryType: $primaryType, secondaryType: $secondaryType, stats: $stats)';
   }
 }
 

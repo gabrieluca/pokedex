@@ -8,6 +8,7 @@ class ColorConstants {
   static const menuBackground = Color.fromRGBO(44, 44, 45, 1);
   static const pokemonCardShadow = Color.fromRGBO(0, 0, 0, 0.25);
   static const listBarText = Color.fromRGBO(204, 204, 204, 1);
+  static const statBarBackground = Color.fromRGBO(196, 196, 196, 1);
 }
 
 class TextConstants {
@@ -23,6 +24,8 @@ class TextConstants {
   static const listSearch = 'Search';
   static const listShowAll = 'Show All';
   static const listShowLess = 'Show Less';
+  static const profileDescriptionTitle = 'Description';
+  static const profileStatsTitle = 'Stats';
 }
 
 class IconPathConstants {
@@ -32,6 +35,8 @@ class IconPathConstants {
   static const list = 'assets/icons/list.svg';
   static const search = 'assets/icons/search.svg';
   static const downArrow = 'assets/icons/down_arrow.svg';
+  static const profileDrawing = 'assets/icons/profile_draw.svg';
+  static const profileDrawingBorder = 'assets/icons/profile_draw_border.svg';
 }
 
 class ImagePathConstants {
