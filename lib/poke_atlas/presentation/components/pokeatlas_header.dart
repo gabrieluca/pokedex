@@ -37,8 +37,8 @@ class PokeAtlasHeader extends StatelessWidget {
                     const SizedBox(height: 20),
                     SizedBox(
                       child: SvgPicture.asset(
-                        'assets/icons/menu.svg',
-                        semanticsLabel: 'Menu',
+                        IconPathConstants.menu,
+                        semanticsLabel: TextConstants.headerMenuButton,
                       ),
                     ),
                   ],
@@ -58,8 +58,8 @@ class PokeAtlasHeader extends StatelessWidget {
                     const SizedBox(height: 20),
                     SizedBox(
                       child: SvgPicture.asset(
-                        'assets/icons/close.svg',
-                        semanticsLabel: 'Fechar',
+                        IconPathConstants.close,
+                        semanticsLabel: TextConstants.headerCloseButton,
                       ),
                     ),
                   ],
