@@ -35,6 +35,7 @@ class ListPage extends StatelessWidget {
             ),
           ),
           SafeArea(
+            bottom: false,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
@@ -47,6 +48,8 @@ class ListPage extends StatelessWidget {
                     const SizedBox(height: 17.64),
                     FilterBar(_controller),
                     const SizedBox(height: 29.22),
+                    //TODO Fix empty state (search)
+                    //TODO Implement BLOC
                     _controller.obx(
                       (state) => ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),
@@ -59,8 +62,7 @@ class ListPage extends StatelessWidget {
                           return PokemonCard(
                             _controller.pageList[index],
                             onTap: () async {
-                              final description =
-                                  await _controller.getPokemonDescription(
+                              final description = await _controller.getPokemonDescription(
                                 _controller.pageList[index].id,
                               );
                               Navigator.push(
@@ -76,8 +78,7 @@ class ListPage extends StatelessWidget {
                           );
                         },
                       ),
-                      onEmpty: const Center(
-                          child: Text('Nenhum Pokémon encontrado')),
+                      onEmpty: const Center(child: Text('Nenhum Pokémon encontrado')),
                       onLoading: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [

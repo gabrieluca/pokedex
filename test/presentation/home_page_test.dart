@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  //TODO Add Golden Tests
+  //TODO Add Behavior Tests
+  //TODO Add Integration Test
   testWidgets('Home Page', (tester) async {
     await tester.pumpWidget(const PokeAtlasApp());
     await openHomePage(tester);

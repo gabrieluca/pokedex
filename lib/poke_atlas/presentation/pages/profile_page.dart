@@ -14,19 +14,20 @@ const _statsList = ['HP', 'ATK', 'DEF', 'SpP', 'SpD', 'spd'];
 const _statsMax = [250, 134, 180, 154, 125, 150];
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage(this.pokemon, this.description, {Key? key})
-      : super(key: key);
+  const ProfilePage(this.pokemon, this.description, {Key? key}) : super(key: key);
 
   final PokemonDetailEntity pokemon;
   final Description? description;
 
   @override
   Widget build(BuildContext context) {
-    final _typeColor = LayoutMapper.getColorFromPokemonTypeMap[
-        pokemon.primaryType ?? pokemon.secondaryType];
+    final _typeColor =
+        LayoutMapper.getColorFromPokemonTypeMap[pokemon.primaryType ?? pokemon.secondaryType];
     return Scaffold(
       body: Stack(
         children: [
+          //TODO Add back button
+          //TODO Add Sliver app bar header with pokemon icon
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -220,14 +221,11 @@ class _TypeBadges extends StatelessWidget {
       children: [
         Row(
           children: [
-            if (LayoutMapper
-                    .getImageAssetFromPokemonTypeMap[pokemon.primaryType] !=
-                null)
+            if (LayoutMapper.getImageAssetFromPokemonTypeMap[pokemon.primaryType] != null)
               SizedBox(
                 height: 46,
                 child: Image.asset(
-                  LayoutMapper
-                      .getImageAssetFromPokemonTypeMap[pokemon.primaryType]!,
+                  LayoutMapper.getImageAssetFromPokemonTypeMap[pokemon.primaryType]!,
                 ),
               ),
             const SizedBox(width: 12),
@@ -240,14 +238,11 @@ class _TypeBadges extends StatelessWidget {
         ),
         Row(
           children: [
-            if (LayoutMapper
-                    .getImageAssetFromPokemonTypeMap[pokemon.secondaryType] !=
-                null)
+            if (LayoutMapper.getImageAssetFromPokemonTypeMap[pokemon.secondaryType] != null)
               SizedBox(
                 height: 46,
                 child: Image.asset(
-                  LayoutMapper
-                      .getImageAssetFromPokemonTypeMap[pokemon.secondaryType]!,
+                  LayoutMapper.getImageAssetFromPokemonTypeMap[pokemon.secondaryType]!,
                 ),
               ),
             const SizedBox(width: 12),
@@ -374,8 +369,8 @@ class _PokemonTypeDivider extends StatelessWidget {
         Expanded(
           child: Container(
             height: 2,
-            color: LayoutMapper.getColorFromPokemonTypeMap[
-                pokemon.primaryType ?? pokemon.secondaryType],
+            color: LayoutMapper
+                .getColorFromPokemonTypeMap[pokemon.primaryType ?? pokemon.secondaryType],
           ),
         ),
       ],

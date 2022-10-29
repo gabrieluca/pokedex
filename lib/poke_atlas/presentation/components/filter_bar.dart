@@ -23,14 +23,14 @@ class _FilterBarState extends State<FilterBar> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO Replace with ExpansionTile
     return Row(
       children: [
         Expanded(
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius:
-                  BorderRadius.all(Radius.circular(isCollapsed ? 100 : 25)),
+              borderRadius: BorderRadius.all(Radius.circular(isCollapsed ? 100 : 25)),
               boxShadow: const [
                 BoxShadow(
                   color: ColorConstants.pokemonCardShadow,
@@ -91,8 +91,7 @@ class _ChipsGrid extends StatelessWidget {
               controller.typeSelectedMap.entries.length,
               (index) {
                 final type = controller.typeSelectedMap.keys.elementAt(index);
-                final isSelected =
-                    controller.typeSelectedMap.values.elementAt(index);
+                final isSelected = controller.typeSelectedMap.values.elementAt(index);
                 return Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -139,9 +138,7 @@ class _ShowAllButton extends StatelessWidget {
                 const SizedBox(width: 4.26),
                 Expanded(
                   child: Text(
-                    isCollapsed
-                        ? TextConstants.listShowAll
-                        : TextConstants.listShowLess,
+                    isCollapsed ? TextConstants.listShowAll : TextConstants.listShowLess,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.w200,
                           color: ColorConstants.listBarText,

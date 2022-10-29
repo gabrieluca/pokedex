@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -31,9 +30,11 @@ class PokeAtlasHeader extends StatelessWidget {
               ? GestureDetector(
                   key: const Key(KeyConstants.headerMenuButton),
                   onTap: () {
+                    //TODO Implement AutoRoute or Navigator 2.0
+                    //TODO Fix transition
                     Navigator.push(
                       context,
-                      CupertinoPageRoute(
+                      MaterialPageRoute(
                         builder: (context) => const MenuPage(),
                       ),
                     );

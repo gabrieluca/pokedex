@@ -14,6 +14,10 @@ class PokeAtlasApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO Implement ThemeData
+    //TODO Make app responsive and adaptive
+    //TODO Animations
+    //TODO Improve Linting
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: TextConstants.appTitle,
