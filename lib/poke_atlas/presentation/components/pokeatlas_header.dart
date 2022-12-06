@@ -6,9 +6,9 @@ import '../utils/constants.dart';
 
 class PokeAtlasHeader extends StatelessWidget {
   const PokeAtlasHeader({
-    Key? key,
+    super.key,
     this.isMenuIcon = true,
-  }) : super(key: key);
+  });
 
   final bool isMenuIcon;
 

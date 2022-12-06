@@ -3,11 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class MenuTile extends StatelessWidget {
   const MenuTile({
-    Key? key,
+    super.key,
     required this.iconPath,
     required this.title,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final String iconPath;
   final String title;

@@ -10,7 +10,7 @@ void main() {
 }
 
 class PokeAtlasApp extends StatelessWidget {
-  const PokeAtlasApp({Key? key}) : super(key: key);
+  const PokeAtlasApp({super.key});
 
   @override
   Widget build(BuildContext context) {

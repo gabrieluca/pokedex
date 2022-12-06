@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../domain/errors/failure.dart';
-import 'http_service/http_service.dart';
 import '../datasources/datasource.dart';
+import 'http_service/http_service.dart';
 
 class DatasourceImplApi extends Datasource {
   final HttpService httpService;
@@ -16,8 +16,7 @@ class DatasourceImplApi extends Datasource {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-      final response =
-          await httpService.get(url, queryParameters: queryParameters);
+      final response = await httpService.get(url, queryParameters: queryParameters);
 
       return Right(response.data);
     } on DioError catch (e) {

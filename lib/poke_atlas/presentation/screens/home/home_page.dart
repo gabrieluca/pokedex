@@ -8,7 +8,7 @@ import '../../utils/ui_helper.dart';
 import '../list/list_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +43,7 @@ class HomePage extends StatelessWidget {
 }
 
 class _Background extends StatelessWidget {
-  const _Background({
-    Key? key,
-  }) : super(key: key);
+  const _Background();
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +68,7 @@ class _Background extends StatelessWidget {
 }
 
 class _HomeTitle extends StatelessWidget {
-  const _HomeTitle({
-    Key? key,
-  }) : super(key: key);
+  const _HomeTitle();
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +90,7 @@ class _HomeTitle extends StatelessWidget {
 }
 
 class _HomeDescription extends StatelessWidget {
-  const _HomeDescription({
-    Key? key,
-  }) : super(key: key);
+  const _HomeDescription();
 
   @override
   Widget build(BuildContext context) {
@@ -118,25 +112,23 @@ class _HomeDescription extends StatelessWidget {
 }
 
 class _SearchButton extends StatelessWidget {
-  const _SearchButton({
-    Key? key,
-  }) : super(key: key);
+  const _SearchButton();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       key: const Key(KeyConstants.searchButton),
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: ColorConstants.homeSearchButton,
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: const [
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+          boxShadow: [
             BoxShadow(
               color: ColorConstants.homeSearchButtonShadow,
               offset: Offset(1, 0),
               blurRadius: 8,
               spreadRadius: 2,
-            )
+            ),
           ],
         ),
         child: Row(

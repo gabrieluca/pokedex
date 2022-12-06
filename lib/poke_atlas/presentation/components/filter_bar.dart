@@ -10,8 +10,8 @@ import '../utils/mapper.dart';
 class FilterBar extends StatefulWidget {
   const FilterBar(
     this.controller, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final ListController controller;
 
   @override
@@ -57,7 +57,7 @@ class _FilterBarState extends State<FilterBar> {
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -65,9 +65,8 @@ class _FilterBarState extends State<FilterBar> {
 
 class _ChipsGrid extends StatelessWidget {
   const _ChipsGrid(
-    this.controller, {
-    Key? key,
-  }) : super(key: key);
+    this.controller,
+  );
 
   final ListController controller;
 
@@ -116,9 +115,8 @@ class _ChipsGrid extends StatelessWidget {
 
 class _ShowAllButton extends StatelessWidget {
   const _ShowAllButton({
-    Key? key,
     required this.isCollapsed,
-  }) : super(key: key);
+  });
 
   final bool isCollapsed;
 
@@ -166,8 +164,7 @@ class _PokemonTypeChip extends StatelessWidget {
     this.type,
     this.isSelected, {
     this.onTap,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final PokemonType type;
   final bool isSelected;

@@ -22,7 +22,7 @@ class ListController extends GetxController with StateMixin<List<PokemonDetailEn
 
   List<PokemonType> get selectedTypes => [
         for (var i in typeSelectedMap.keys)
-          if (typeSelectedMap[i]!) i
+          if (typeSelectedMap[i]!) i,
       ];
 
   @override
@@ -95,40 +95,45 @@ class ListController extends GetxController with StateMixin<List<PokemonDetailEn
   Future<void> getPokemonDetails() async {
     const count = 20;
     var newList = <PokemonDetailEntity>[];
-    for (var pokemonItem in listEntity.value!.pokemonList.skip(currentOffset.value).take(count)) {
-      if (pokemonItem.url != null) {
-        final failureOrResponse = await _pokedexRepository.getPokemonDetail(pokemonItem.url!);
-        failureOrResponse.fold(
-          (error) => null,
-          (detailResponse) {
-            newList.add(detailResponse);
-          },
-        );
-      }
-    }
-    addPokemonsToList(newList);
-    change(pageList, status: RxStatus.success());
-    currentOffset.value += 20;
-    if (pokemonDetailList.length < 150) {
-      listEndStatus.value = RxStatus.empty();
-    } else {
-      listEndStatus.value = RxStatus.success();
-    }
-  }
-
-  Future<void> getAllPokemonDetails() async {
-    if (pokemonDetailList.length < 150) {
-      change(pageList, status: RxStatus.loading());
-      var newList = <PokemonDetailEntity>[];
-      for (var pokemonItem in listEntity.value!.pokemonList.skip(currentOffset.value)) {
-        if (pokemonItem.url != null) {
-          final failureOrResponse = await _pokedexRepository.getPokemonDetail(pokemonItem.url!);
+    final _listEntity = listEntity.value;
+    if (_listEntity != null) {
+      for (var pokemonItem in _listEntity.pokemonList.skip(currentOffset.value).take(count)) {
+        final url = pokemonItem.url;
+        if (url != null) {
+          final failureOrResponse = await _pokedexRepository.getPokemonDetail(url);
           failureOrResponse.fold(
             (error) => null,
             (detailResponse) {
               newList.add(detailResponse);
             },
           );
+        }
+      }
+    }
+    addPokemonsToList(newList);
+    change(pageList, status: RxStatus.success());
+    currentOffset.value += 20;
+    listEndStatus.value = pokemonDetailList.length < 150 ? RxStatus.empty() : RxStatus.success();
+  }
+
+  Future<void> getAllPokemonDetails() async {
+    //TODO Refactor method
+    if (pokemonDetailList.length < 150) {
+      change(pageList, status: RxStatus.loading());
+      var newList = <PokemonDetailEntity>[];
+      final _listEntity = listEntity.value;
+      if (_listEntity != null) {
+        for (var pokemonItem in _listEntity.pokemonList.skip(currentOffset.value)) {
+          final url = pokemonItem.url;
+          if (url != null) {
+            final failureOrResponse = await _pokedexRepository.getPokemonDetail(url);
+            failureOrResponse.fold(
+              (error) => null,
+              (detailResponse) {
+                newList.add(detailResponse);
+              },
+            );
+          }
         }
       }
       addPokemonsToList(newList);

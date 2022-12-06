@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../components/pokeatlas_header.dart';
 import '../../components/menu_tile.dart';
+import '../../components/pokeatlas_header.dart';
 import '../../utils/constants.dart';
 import '../list/list_page.dart';
 import 'home_page.dart';
 
 class MenuPage extends StatelessWidget {
-  const MenuPage({Key? key}) : super(key: key);
+  const MenuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class MenuPage extends StatelessWidget {
 
 class MenuBody extends StatelessWidget {
   const MenuBody({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +62,11 @@ class MenuBody extends StatelessWidget {
             },
           ),
         ),
-        Padding(
+        Container(
           padding: const EdgeInsets.symmetric(vertical: 30),
-          child: Container(
-            height: 1,
-            width: 160,
-            color: ColorConstants.menuDivider,
-          ),
+          height: 1,
+          width: 160,
+          color: ColorConstants.menuDivider,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),

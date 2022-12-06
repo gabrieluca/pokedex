@@ -37,7 +37,7 @@ class PokemonStatsEntity {
 
   factory PokemonStatsEntity.fromMap(List<dynamic> list) {
     return PokemonStatsEntity(
-      hp: PokemonStatsItemEntity.fromMap(list[0]),
+      hp: PokemonStatsItemEntity.fromMap(list.first),
       attack: PokemonStatsItemEntity.fromMap(list[1]),
       defense: PokemonStatsItemEntity.fromMap(list[2]),
       specialAttack: PokemonStatsItemEntity.fromMap(list[3]),

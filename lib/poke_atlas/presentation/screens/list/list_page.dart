@@ -9,11 +9,11 @@ import '../../components/pokeatlas_header.dart';
 import '../../components/pokemon_card.dart';
 import '../../components/search_bar.dart';
 import '../../controller/list_controller.dart';
-import '../../pages/profile_page.dart';
+import '../../pages/profile/profile_page.dart';
 import '../../utils/constants.dart';
 
 class ListPage extends StatelessWidget {
-  const ListPage({Key? key}) : super(key: key);
+  const ListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -96,9 +96,9 @@ class ListPage extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
-                                children: [
-                                  const CustomLoading(),
-                                  const SizedBox(
+                                children: const [
+                                  CustomLoading(),
+                                  SizedBox(
                                     height: 20,
                                   ),
                                 ],

@@ -5,16 +5,79 @@ linter:
     avoid_redundant_argument_values: true
     avoid_print: true
     file_names: true
-    invalid_assignment: true
     no_duplicate_case_values: true
     prefer_relative_imports: true
     prefer_single_quotes: true
     sized_box_for_whitespace: true
-    prefer_const_constructors: true
-    prefer_const_literals_to_create_immutables: false
     always_declare_return_types: true
     require_trailing_commas: true
+    use_super_parameters: true
+    directives_ordering: true
 
 analyzer:
-  exclude:
-    - lib/generated_plugin_registrant.dart
+  plugins:
+    - dart_code_metrics
+
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 20
+    lines-of-executable-code: 50
+    number-of-parameters: 4
+    maximum-nesting-level: 5
+  metrics-exclude:
+    - test/**
+  rules:
+    # - newline-before-return
+    - no-empty-block
+    - no-boolean-literal-compare
+    - prefer-trailing-comma
+    - prefer-conditional-expressions
+    - no-equal-then-else
+    # - prefer-match-file-name:
+    #     exclude:
+    #       - test/**
+    #       - main.dart
+
+    # Optional
+    - avoid-missing-enum-constant-in-map
+    - avoid-nested-conditional-expressions:
+        acceptable-level: 1
+    - avoid-non-null-assertion
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format
+    - no-object-declaration
+
+    # - no-equal-arguments:
+    #     ignored-parameters:
+    #       - height
+    #       - width
+    # - no-magic-number
+    - prefer-async-await
+    - prefer-commenting-analyzer-ignores
+    # - prefer-correct-identifier-length
+    - prefer-correct-type-name
+    - prefer-first
+    - prefer-last
+    - prefer-immediate-return
+    # - prefer-moving-to-variable:
+    #     exclude:
+    #       - test/**
+    #       - main.dart
+
+    # Flutter
+    - always-remove-listener
+    - avoid-returning-widgets
+    - avoid-border-all
+    - avoid-unnecessary-setstate
+    - avoid-use-expanded-as-spacer
+    - avoid-wrapping-in-padding
+    - prefer-const-border-radius
+    # - prefer-extracting-callbacks
+    # - prefer-single-widget-per-file

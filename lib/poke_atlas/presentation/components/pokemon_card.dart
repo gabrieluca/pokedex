@@ -6,7 +6,7 @@ import '../utils/constants.dart';
 import '../utils/mapper.dart';
 
 class PokemonCard extends StatelessWidget {
-  const PokemonCard(this.pokemon, {Key? key, this.onTap}) : super(key: key);
+  const PokemonCard(this.pokemon, {super.key, this.onTap});
 
   final PokemonDetailEntity pokemon;
   final void Function()? onTap;
@@ -29,7 +29,7 @@ class PokemonCard extends StatelessWidget {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
           child: Stack(
             children: [
               Column(
@@ -62,11 +62,9 @@ class PokemonCard extends StatelessWidget {
 
 class _IdTile extends StatelessWidget {
   const _IdTile({
-    Key? key,
     required Color? color,
     required this.pokemon,
-  })  : _color = color,
-        super(key: key);
+  }) : _color = color;
 
   final Color? _color;
   final PokemonDetailEntity pokemon;
@@ -103,11 +101,10 @@ class _IdTile extends StatelessWidget {
 
 class InfoTile extends StatelessWidget {
   const InfoTile({
-    Key? key,
+    super.key,
     required this.pokemon,
     required Color? color,
-  })  : _color = color,
-        super(key: key);
+  }) : _color = color;
 
   final PokemonDetailEntity pokemon;
   final Color? _color;
@@ -167,10 +164,8 @@ class InfoTile extends StatelessWidget {
 
 class _BottomPadding extends StatelessWidget {
   const _BottomPadding({
-    Key? key,
     required Color? color,
-  })  : _color = color,
-        super(key: key);
+  }) : _color = color;
 
   final Color? _color;
 
