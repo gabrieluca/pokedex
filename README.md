@@ -19,3 +19,8 @@ A showcase of my favorite architectural choices, code quality best practices, te
 - Usecase tests
 - Golden Tests
 - Integration Tests
+
+### UI/UX principles
+- Responsivity
+- Adaptivity
+- Theming
