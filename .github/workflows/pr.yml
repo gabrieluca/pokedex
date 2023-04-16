@@ -14,15 +14,18 @@ jobs:
         with:
           flutter-version: '3.7.10'
           channel: 'stable'
-
-      - name: Run format, analyze, test
-        run: |
-          flutter analyze
-          flutter test --coverage
-      - name: Dart Code Metrics
+      - name: Linter
+        uses: invertase/github-action-dart-analyzer@v1
+        with:
+          annotate-only: false
         uses: dart-code-checker/dart-code-metrics-action@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run format, analyze, test
+        run: |
+          // flutter analyze
+          flutter test --coverage
   build:
     name: Build app
     needs: [tests]
