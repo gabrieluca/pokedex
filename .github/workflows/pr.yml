@@ -5,7 +5,7 @@ on:
 
 jobs:
   tests:
-    name: Run Tests and Lint
+    name: Analyzer and Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -14,10 +14,10 @@ jobs:
         with:
           flutter-version: '3.7.10'
           channel: 'stable'
+      - run: flutter pub get
 
       - name: Analyzer and Dart Code Metrics
-        run: |
-          flutter analyze --fatal-infos --fatal-warnings
+        uses: zgosalvez/github-actions-analyze-dart@v2
       - uses: dart-code-checker/dart-code-metrics-action@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
