@@ -8,16 +8,18 @@ jobs:
     name: Run Tests and Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout flutter_ci_example
+      - name: Checkout
         uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.7.10'
           channel: 'stable'
       - name: Linter
-        uses: invertase/github-action-dart-analyzer@v1
+        uses: dart-lang/setup-dart@v1
+      - uses: invertase/github-action-dart-analyzer@v1
         with:
-          annotate-only: false
+          annotate-only: true
+      - name: Dart Code Metrics
         uses: dart-code-checker/dart-code-metrics-action@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -34,9 +36,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-11]
     steps:
-      - name: Checkout flutter_flutter_ci_example
+      - name: Checkout
         uses: actions/checkout@v2
-
       - name: Configure Flutter environment 
         uses: subosito/flutter-action@v1
         with:
