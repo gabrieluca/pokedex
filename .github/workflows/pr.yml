@@ -8,17 +8,18 @@ jobs:
     name: Run Tests and Lint
     runs-on: ubuntu-latest
     steps:
+      - name: Linter
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+      - uses: invertase/github-action-dart-analyzer@v1
+        with:
+          annotate-only: true
       - name: Checkout
         uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.7.10'
           channel: 'stable'
-      - name: Linter
-        uses: dart-lang/setup-dart@v1
-      - uses: invertase/github-action-dart-analyzer@v1
-        with:
-          annotate-only: true
       - name: Dart Code Metrics
         uses: dart-code-checker/dart-code-metrics-action@v3
         with:
