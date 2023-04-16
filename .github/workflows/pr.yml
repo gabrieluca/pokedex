@@ -8,6 +8,7 @@ jobs:
     name: Analyzer and Tests
     runs-on: ubuntu-latest
     steps:
+    # Checkout the repository 
       - name: Checkout
         uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -17,11 +18,13 @@ jobs:
       - run: flutter pub get
 
       - name: Analyzer and Dart Code Metrics
+    # Run flutter analyzer with annotations
         uses: zgosalvez/github-actions-analyze-dart@v2
+    # Run DCM rules
       - uses: dart-code-checker/dart-code-metrics-action@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
+    # Run all tests
       - name: Tests
         run: |
           flutter test --coverage
@@ -31,17 +34,18 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+      # Build for both machines(Android and iOS)
         os: [ubuntu-latest, macos-11]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+        uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.7.10'
           channel: 'stable'
 
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             build/
@@ -64,7 +68,7 @@ jobs:
           echo "Not implemented yet."
   
       - name: 'Upload Builds'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
           name: builds
