@@ -16,8 +16,8 @@ jobs:
           channel: 'stable'
 
       - name: Analyzer and Dart Code Metrics
-          run: |
-            flutter analyze --fatal-infos --fatal-warnings
+        run: |
+          flutter analyze --fatal-infos --fatal-warnings
       - uses: dart-code-checker/dart-code-metrics-action@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
