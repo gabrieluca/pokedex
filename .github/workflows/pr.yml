@@ -10,8 +10,8 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout
-        uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+        uses: actions/checkout@v3.5.2
+      - uses: subosito/flutter-action@v2.10.0
         with:
           flutter-version: '3.7.10'
           channel: 'stable'
@@ -21,7 +21,7 @@ jobs:
         run: flutter format --dry-run --set-exit-if-changed lib/
       - run: flutter format --dry-run --set-exit-if-changed test/
       # Run flutter analyzer with annotations
-      - uses: zgosalvez/github-actions-analyze-dart@v2
+      - uses: zgosalvez/github-actions-analyze-dart@v2.0.14
       # Run DCM rules
       - uses: dart-code-checker/dart-code-metrics-action@v3
         with:
@@ -32,15 +32,16 @@ jobs:
           flutter test --coverage
       - run: flutter test --machine > test-results.json
       # Outputs a Test Report
-      - uses: dorny/test-reporter@v1.4.2
+      - uses: dorny/test-reporter@v1.6.0
         with:
           name: test-results
           path: test-results.json
           reporter: flutter-json
       # Set a min coverage for tests
-      - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+      - uses: VeryGoodOpenSource/very_good_coverage@v2.1.0
         with:
           min_coverage: 0
+          # exclude: '**/*_observer.dart **/change.dart'
   build:
     name: Build app
     needs: [tests]
@@ -51,8 +52,8 @@ jobs:
         os: [ubuntu-latest, macos-11]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+        uses: actions/checkout@v3.5.2
+      - uses: subosito/flutter-action@v2.10.0
         with:
           flutter-version: '3.7.10'
           channel: 'stable'
