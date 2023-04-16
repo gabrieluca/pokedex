@@ -10,20 +10,210 @@
 include: package:flutter_lints/flutter.yaml
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at
-  # https://dart-lang.github.io/linter/lints/index.html.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    avoid_redundant_argument_values: true
+    avoid_print: true
+    file_names: true
+    no_duplicate_case_values: true
+    prefer_relative_imports: true
+    prefer_single_quotes: true
+    sized_box_for_whitespace: true
+    always_declare_return_types: true
+    require_trailing_commas: true
+    use_super_parameters: true
+    directives_ordering: true
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  exclude:
+    - lib/**.g.dart
+    - lib/**.config.dart
+    - lib/**.freezed.dart
+    - lib/main.dart
+  plugins:
+    - dart_code_metrics
+
+dart_code_metrics:
+  anti-patterns:
+    # - long-parameter-list:
+    #     severity: style
+    #     exclude:
+    #       - test/**
+  metrics:
+    - cyclomatic-complexity: 20
+    - halstead-volume: 150
+    - lines-of-code: 100
+    - maintainability-index: 50
+    - maximum-nesting-level: 4
+    - number-of-methods: 10
+    - number-of-parameters: 4
+    - source-lines-of-code: 50
+    - technical-debt:
+      threshold: 1
+      todo-cost: 160
+      ignore-cost: 160
+      ignore-for-file-cost: 160
+      as-dynamic-cost: 40
+      deprecated-annotations-cost: 80
+      file-nullsafety-migration-cost: 160
+      unit-type: 'BRL'
+    - weight-of-class: 0.33
+
+  rules:
+    #   # UNNECESSARY STYLE
+    #   # - arguments-ordering
+    # COMMON
+    # - avoid-banned-imports
+    - avoid-cascade-after-if-null
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-duplicate-exports
+    - avoid-dynamic
+    - avoid-global-state
+    - avoid-ignoring-return-values
+    - avoid-late-keyword
+    - avoid-missing-enum-constant-in-map
+    - avoid-nested-conditional-expressions
+    - avoid-non-ascii-symbols
+    - avoid-non-null-assertion
+    - avoid-passing-async-when-sync-expected
+    - avoid-redundant-async
+    - avoid-substring
+    - avoid-throw-in-catch-block
+    - avoid-top-level-members-in-tests
+    - avoid-unnecessary-conditionals
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    # - ban-name
+    - binary-expression-operand-order
+    - double-literal-format
+    - format-comment
+    - list-all-equatable-fields
+    - member-ordering
+    - missing-test-assertion
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block
+    - no-equal-arguments
+    - no-equal-then-else
+    - no-magic-number
+    - no-object-declaration
+    - prefer-async-await
+    - prefer-commenting-analyzer-ignores
+    - prefer-conditional-expressions
+    - prefer-correct-identifier-length
+    - prefer-correct-test-file-name
+    - prefer-correct-type-name
+    - prefer-enums-by-name
+    - prefer-first
+    - prefer-last
+    - prefer-immediate-return
+    - prefer-iterable-of
+    - prefer-match-file-name
+    - prefer-moving-to-variable
+    - prefer-static-class
+    - prefer-trailing-comma
+    - tag-name
+
+  #   - avoid-cascade-after-if-null
+  #   - avoid-unnecessary-conditionals
+  #   - avoid-unnecessary-type-assertions
+  #   - avoid-unrelated-type-assertions
+  #   - avoid-unused-parameters
+  #   - binary-expression-operand-order
+  #   - double-literal-format
+  #   - newline-before-return
+  #   - no-boolean-literal-compare
+  #   - no-empty-block
+  #   - no-equal-then-else
+  #   - prefer-commenting-analyzer-ignores
+  #   - prefer-correct-test-file-name
+  #   - prefer-enums-by-name
+  #   - prefer-first
+  #   - prefer-immediate-return
+  #   - prefer-last
+  #   - always-remove-listener
+  #   - avoid-shrink-wrap-in-lists
+  #   - avoid-unnecessary-setstate
+  #   - use-setstate-synchronously
+  #   - prefer-correct-edge-insets-constructor
+  #   - avoid-expanded-as-spacer
+  #   - prefer-using-list-view
+  #   - format-comment:
+  #       only-doc-comments: true
+  #       ignored-patterns:
+  #         - ^ cSpell.*
+  #   - avoid-late-keyword:
+  #     exclude:
+  #       - test/**
+  #   - avoid-nested-conditional-expressions:
+  #     acceptable-level: 2
+  #   - avoid-top-level-members-in-tests:
+  #     exclude:
+  #       - lib/**
+  #       - bin/**
+  #   - member-ordering:
+  #       alphabetize: true
+  #       order:
+  #         - constructors
+  #         - private-fields
+  #         - public-fields
+  #         - close-method
+  #         - dispose-method
+  #       widgets-order:
+  #         - constructor
+  #         - init-state-method
+  #         - did-change-dependencies-method
+  #         - did-update-widget-method
+  #         - build-method
+  #         - dispose-method
+  #   - ban-name:
+  #       entries:
+  #         - ident: showDialog
+  #           description: Please use myShowDialog in this package
+  #         - ident: _height
+  #           description: Please use myShowDialog in this package
+  #         - ident: _width
+  #           description: Please use myShowDialog in this package
+  #         - ident: DateTime.now
+  #           description: Please use a Clock.now instead
+  #   - no-magic-number:
+  #       allowed: [0, 1000]
+  #       allow-only-once: true
+  #   - prefer-correct-identifier-length:
+  #       exceptions: []
+  #       max-identifier-length: 30
+  #       min-identifier-length: 3
+  #   - prefer-correct-type-name:
+  #       excluded: []
+  #       min-length: 3
+  #       max-length: 40
+  #   - prefer-match-file-name:
+  #       exclude:
+  #         - test/**
+  #   - prefer-static-class:
+  #       ignore-annotations:
+  #         - allowedAnnotation
+  #       ignore-private: true
+  #       ignore-names:
+  #         - (.*)Provider
+  #         - use(.*)
+  #   - prefer-trailing-comma:
+  #       break-on: 3
+  #   - avoid-returning-widgets:
+  #       ignored-names:
+  #         - testFunction
+  #       ignored-annotations:
+  #         - allowedAnnotation
+  #   - prefer-single-widget-per-file:
+  #       ignore-private-widgets: true
+  #   # NEW
+  #   - prefer-provide-intl-description
+  #   - correct-game-instantiating
+  #   - avoid-initializing-in-on-mount
+  #   - avoid-creating-vector-in-update
+  #   - prefer-define-hero-tag
