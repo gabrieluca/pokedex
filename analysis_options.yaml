@@ -80,7 +80,7 @@ dart_code_metrics:
     - avoid-non-null-assertion
     - avoid-passing-async-when-sync-expected
     - avoid-redundant-async
-    - avoid-substring
+    # - avoid-substring
     - avoid-throw-in-catch-block
     - avoid-top-level-members-in-tests
     - avoid-unnecessary-conditionals
