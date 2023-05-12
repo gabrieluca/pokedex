@@ -27,3 +27,12 @@ class UnexpectedFailure extends Failure {
     this.message = message;
   }
 }
+
+enum AuthFailure {
+  wrongCredentials('wrong_credentials_exception'),
+  userNotFound('user_not_found_exception');
+
+  final String errorCode;
+
+  const AuthFailure(this.errorCode);
+}
