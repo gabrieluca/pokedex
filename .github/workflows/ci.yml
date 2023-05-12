@@ -1,0 +1,100 @@
+name: CI
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  tests:
+    name: Analyzer and Tests
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.2
+      
+      - name: Clone Flutter
+        uses: subosito/flutter-action@v2.10.0
+        with:
+          flutter-version: '3.10.0'
+          channel: 'stable'
+      - run: flutter pub get
+
+      - name: Flutter Lints
+        uses: zgosalvez/github-actions-analyze-dart@v2.0.14 # Run flutter analyzer with annotations
+        # with:
+          # fail-on-infos: true
+          # fail-on-warnings: true
+      
+      - name: Dart Code Metrics
+        uses: dart-code-checker/dart-code-metrics-action@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pull_request_comment: true
+          # check_unused_files: true
+          # fatal_style: true
+          # fatal_performance: true
+          # fatal_warnings: true
+
+      # - name: Tests
+      #   run: flutter pub get
+      # - run: flutter test --coverage
+      # - run: flutter test --machine > test-results.json
+      # - uses: dorny/test-reporter@v1.6.0 # Outputs a Test Report
+      #   with:
+      #     name: test-results
+      #     path: test-results.json
+      #     reporter: flutter-json
+      # - uses: VeryGoodOpenSource/very_good_coverage@v2.1.0 # Set a min coverage for tests
+      #   with:
+      #     min_coverage: 0
+      #     exclude: '**/*_observer.dart **/change.dart'
+
+  # build:
+  #   name: Build app
+  #   needs: [tests]
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       # Build for each platform(Android and iOS)
+  #       os: [ubuntu-latest, macos-11]
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3.5.2
+  #     - uses: subosito/flutter-action@v2.10.0
+  #       with:
+  #         flutter-version: '3.7.10'
+  #         channel: 'stable'
+
+  #     - name: Cache
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: |
+  #           build/
+  #           android/.gradle/
+  #         key: ${{ runner.os }}-app-${{ hashFiles('**/*.gradle*', 'pubspec.lock') }}
+
+  #     - name: Build Android app
+  #       if: ${{ matrix.os == 'ubuntu-latest' }}
+  #       run: |
+  #         echo "Building Android..."
+  #         pwd
+  #         flutter pub get
+  #         flutter build apk --no-pub
+  #         flutter build appbundle --no-pub
+  #     - name: Build iOS app
+  #       if: ${{ matrix.os == 'macos-11' }}
+  #       run: |
+  #         flutter pub get
+  #         echo "Building iOS..."
+  #         echo "Not implemented yet."
+
+  #     - name: 'Upload Builds'
+  #       uses: actions/upload-artifact@v3
+  #       if: ${{ matrix.os == 'ubuntu-latest' }}
+  #       with:
+  #         name: builds
+  #         path: |
+  #           build/app/outputs/flutter-apk/app-release.apk
+  #           build/app/outputs/bundle/release/app-release.aab
+  #         retention-days: 5
