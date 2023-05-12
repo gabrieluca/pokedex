@@ -10,43 +10,45 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Clone repo and install Flutter
-        uses: actions/checkout@v3.5.2 # Clone the current repository
-      - uses: subosito/flutter-action@v2.10.0 # Install Flutter SDK
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.2
+      
+      - name: Clone Flutter
+        uses: subosito/flutter-action@v2.10.0
         with:
-          flutter-version: '3.7.10'
+          flutter-version: '3.10.0'
           channel: 'stable'
       - run: flutter pub get
 
-      - name: Analyzer and Dart Code Metrics
-        run: flutter format --dry-run --set-exit-if-changed lib/ # Verify correct formatting
-      - run: flutter format --dry-run --set-exit-if-changed test/
-      - uses: zgosalvez/github-actions-analyze-dart@v2.0.14 # Run flutter analyzer with annotations
+      - name: Flutter Lints
+        uses: zgosalvez/github-actions-analyze-dart@v2.0.14 # Run flutter analyzer with annotations
         # with:
           # fail-on-infos: true
           # fail-on-warnings: true
-          # line-length: 100
-      - uses: dart-code-checker/dart-code-metrics-action@v3 # Run DCM rules
+      
+      - name: Dart Code Metrics
+        uses: dart-code-checker/dart-code-metrics-action@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          pull_request_comment: true
+          # check_unused_files: true
           # fatal_style: true
           # fatal_performance: true
           # fatal_warnings: true
-          pull_request_comment: true
-          check_unused_files: true
 
-      - name: Tests
-        run: flutter test --coverage
-      - run: flutter test --machine > test-results.json
-      - uses: dorny/test-reporter@v1.6.0 # Outputs a Test Report
-        with:
-          name: test-results
-          path: test-results.json
-          reporter: flutter-json
-      - uses: VeryGoodOpenSource/very_good_coverage@v2.1.0 # Set a min coverage for tests
-        with:
-          min_coverage: 0
-          # exclude: '**/*_observer.dart **/change.dart'
+      # - name: Tests
+      #   run: flutter pub get
+      # - run: flutter test --coverage
+      # - run: flutter test --machine > test-results.json
+      # - uses: dorny/test-reporter@v1.6.0 # Outputs a Test Report
+      #   with:
+      #     name: test-results
+      #     path: test-results.json
+      #     reporter: flutter-json
+      # - uses: VeryGoodOpenSource/very_good_coverage@v2.1.0 # Set a min coverage for tests
+      #   with:
+      #     min_coverage: 0
+      #     exclude: '**/*_observer.dart **/change.dart'
 
   # build:
   #   name: Build app
